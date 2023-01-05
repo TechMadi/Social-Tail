@@ -1,0 +1,98 @@
+<div>
+  <!-- Flex -->
+  <div class="flex flex-col justify-between md:flex-row">
+    <!-- Logo -->
+    <div
+      class="bg-auth-screen w-1/2 bg-center bg-no-repeat bg-cover h-screen"
+    ></div>
+    <!-- Form -->
+    <div class="my-auto md:w-1/2 px-7">
+      <h2 class="text-fastDarkGreen px-2 font-bold text-2xl">Register</h2>
+      <form
+        [formGroup]="registerForm"
+        class="my-auto py-5 flex-col justify-between"
+      >
+        <label class="block my-3">
+          <span class="block text-base font-medium text-slate-700">Email</span>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            formControlName="email"
+            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm palceholder-slate-400 focus:outline-none focus:border-fastLightGreen focus:ring-1 focus:ring-fastLightGreen disabled:bg-slate-50 invalid:border-fastRed invalid:text-pink-600 focus:invalid:border-fastRed focus:invalid:ring-fastRed"
+          />
+          <div
+            *ngIf="
+              (registerForm.controls['email'].invalid &&
+                registerForm.controls['email'].errors &&
+                registerForm.controls['email'].dirty) ||
+              registerForm.controls['email'].touched
+            "
+          >
+            <small
+              class="text-fastRed"
+              *ngIf="registerForm.controls['email'].hasError('required')"
+              >This field is required</small
+            >
+            <small
+              class="text-fastRed"
+              *ngIf="registerForm.controls['email'].hasError('email')"
+              >Please provide a valid email</small
+            >
+          </div>
+        </label>
+        <label class="block my-3">
+          <span class="block text-base font-medium text-slate-700"
+            >Password</span
+          >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            formControlName="password"
+            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm palceholder-slate-400 focus:outline-none focus:border-fastLightGreen focus:ring-1 focus:ring-fastLightGreen invalid:border-fastRed invalid:text-pink-600 focus:invalid:border-fastRed focus:invalid:ring-fastRed"
+          />
+
+          <div
+            *ngIf="
+              (registerForm.controls['password'].invalid &&
+                registerForm.controls['password'].errors &&
+                registerForm.controls['password'].dirty) ||
+              registerForm.controls['password'].touched
+            "
+          >
+            <small
+              class="text-fastRed"
+              *ngIf="registerForm.controls['password'].hasError('required')"
+              >This field is required</small
+            >
+            <small
+              class="text-fastRed"
+              *ngIf="registerForm.controls['password'].hasError('minlength')"
+              >A minimum of 6 letters</small
+            >
+          </div>
+        </label>
+
+        <div class="flex justify-center">
+          <button
+            (click)="registerUser()"
+            [disabled]="registerForm.invalid"
+            class="rounded-full bg-fastDarkGreen text-fadedLightGreen w-9/12 p-3 px-6 pt-2 baseline text-center cursor-pointer disabled:cursor-not-allowed disabled:opacity-80"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+
+      <!-- Links -->
+      <div class="text-center">
+        <a
+          [routerLink]="['/login']"
+          class="text-fastRed text-base px-2 text-center"
+          >Have an account?Login</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
